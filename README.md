@@ -24,7 +24,7 @@ Features of the test application:
 
 #### Docker image with python dependencies
 ```bash
-$ docker build -t krayzpipes/pylibraries -f pylibraries.Dockerfile .
+$ docker build -t krazypipes/pylibraries -f pylibraries.Dockerfile .
 ```
 
 #### Docker image for redis
@@ -34,7 +34,7 @@ $ docker build -t krazypipes/redis -f redis.Dockerfile .
 
 #### Docker image for the app
 ```bash
-$ docker build -t krayzpipes/testmon .
+$ docker build -t krazypipes/testmon .
 ```
 
 #### Create docker network

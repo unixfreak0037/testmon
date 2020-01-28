@@ -36,21 +36,30 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            python3.7 -m venv venv
+            source venv/bin/activate
             pip install poetry
-            poetry config virtualenvs.create false
             poetry install --no-interaction --no-ansi
       - run:
           name: lint with flake8
-          command: flake8 src/testmon/*
+          command: |
+            source venv/bin/activate
+            flake8 src/testmon/*
       - run:
           name: lint with pylint
-          command: pylint src/testmon/*
+          command: |
+            source venv/bin/activate
+            pylint src/testmon/*
       - run:
           name: bandit static analysis
-          command: bandit -r src/testmon/*
+          command: |
+            source venv/bin/activate
+            bandit -r src/testmon/*
       - run:
           name: run tests
-          command: pytest tests/*
+          command: |
+            source venv/bin/activate
+            pytest tests/*
       - save_cache:
           paths:
             - ./venv

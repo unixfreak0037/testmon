@@ -41,7 +41,7 @@ jobs:
             pip install poetry
             poetry install --no-interaction --no-ansi
   Code-Style:
-    - steps:
+    steps:
       - run:
           name: lint with flake8
           command: |
@@ -53,21 +53,21 @@ jobs:
             source venv/bin/activate
             pylint src/testmon/*
   Static-Analysis:
-    - steps:
+    steps:
       - run:
           name: bandit static analysis
           command: |
             source venv/bin/activate
             bandit -r src/testmon/*
   Tests:
-    - steps:
+    steps:
       - run:
           name: run tests
           command: |
             source venv/bin/activate
             pytest tests/*
   Finish-Up:
-    - steps:
+    steps:
       - save_cache:
           paths:
             - ./venv

@@ -47,8 +47,8 @@ $ docker network create testmon-net
 ```bash
 # Make sure you name the redis container red1... otherwise change
 # your dockerfile to reflect the actual name you designated.
-$ docker run --network testmon-net --name red1 -d krayzpipes/redis
-$ docker run --network testmon-net --name web1 -d -p 8080:80 krayzpipes/testmon
+$ docker run --network testmon-net --name red1 -d krazypipes/redis
+$ docker run --network testmon-net --name web1 -d -p 8080:80 krazypipes/testmon
 ```
 
 ## Test it with requests

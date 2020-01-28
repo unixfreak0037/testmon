@@ -19,21 +19,18 @@ jobs:
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "pyproject.toml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
       - run:
           name: setup environment
           comand: |
             export PYTHONPATH=$(pwd):$(pwd)/src
             echo "Current PYTHONPATH is:"
             echo $PYTHONPATH
-
       - run:
           name: install dependencies
           command: |
@@ -41,32 +38,22 @@ jobs:
             source venv/bin/activate
             pip install poetry
             poetry install --no-interaction --no-ansi
-
       - run:
           name: lint with flake8
-          command: |
-            flake8 src/testmon/*
-
+          command: flake8 src/testmon/*
       - run:
           name: lint with pylint
-          command: |
-            pylint src/testmon/*
-
+          command: pylint src/testmon/*
       - run:
           name: bandit static analysis
-          command: |
-            bandit -r src/testmon/*
-
+          command: bandit -r src/testmon/*
       - run:
           name: run tests
-          command: |
-            pytest tests/*
-
+          command: pytest tests/*
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
-
+          key: v1-dependencies-{{ checksum "pyproject.toml" }}
       - store_artifacts:
           path: test-reports
           destination: test-reports

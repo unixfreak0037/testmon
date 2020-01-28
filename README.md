@@ -24,17 +24,17 @@ Features of the test application:
 
 #### Docker image with python dependencies
 ```bash
-$ docker build -t krazypipes/pylibraries -f pylibraries.Dockerfile .
+$ docker build -t krayzpipes/pylibraries -f pylibraries.Dockerfile .
 ```
 
 #### Docker image for redis
 ```bash
-$ docker build -t krazypipes/redis -f redis.Dockerfile .
+$ docker build -t krayzpipes/redis -f redis.Dockerfile .
 ```
 
 #### Docker image for the app
 ```bash
-$ docker build -t krazypipes/testmon .
+$ docker build -t krayzpipes/testmon .
 ```
 
 #### Create docker network
@@ -47,8 +47,8 @@ $ docker network create testmon-net
 ```bash
 # Make sure you name the redis container red1... otherwise change
 # your dockerfile to reflect the actual name you designated.
-$ docker run --network testmon-net --name red1 -d krazypipes/redis
-$ docker run --network testmon-net --name web1 -d -p 8080:80 krazypipes/testmon
+$ docker run --network testmon-net --name red1 -d krayzpipes/redis
+$ docker run --network testmon-net --name web1 -d -p 8080:80 krayzpipes/testmon
 ```
 
 ## Test it with requests

@@ -37,6 +37,7 @@ jobs:
           name: install dependencies
           command: |
             pip install poetry
+            poetry config virtualenvs.create false
             poetry install --no-interaction --no-ansi
       - run:
           name: lint with flake8

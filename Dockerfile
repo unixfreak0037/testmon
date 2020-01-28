@@ -1,4 +1,4 @@
-FROM krayzpipes/pylibrary:latest
+FROM krayzpipes/pylibraries:latest
 
 COPY ./src /app
 

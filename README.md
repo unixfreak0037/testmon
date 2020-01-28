@@ -29,7 +29,7 @@ $ docker build -t krayzpipes/pylibraries -f pylibraries.Dockerfile .
 
 #### Docker image for redis
 ```bash
-$ docker build -t -f redis.Dockerfile krayzpipes/redis .
+$ docker build -t krazypipes/redis -f redis.Dockerfile .
 ```
 
 #### Docker image for the app

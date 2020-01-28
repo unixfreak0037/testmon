@@ -5,19 +5,22 @@ Testing some CI/CD pipeline stuff
 
 This repo was built to test out docker and CI/CD pipelines.
 
-The application is a python FastAPI application that uses a Redis backend.
+Features of the test application:
+- FastAPI app logic with Redis backend
+- Designed to alert the client if their jobs took to long to run (ex: Cronjob)
+    - HTTP POST body with `{"app_id": "abcd", "action": "start", "duration": 3600}` would:
+        - Store the app_id as a key in the redis backend.
+        - Start the monitor by taking the sum of the current time + duration, and saving it as
+        the value in the redis backend. This is considered the `expiration` time.
+    - HTTP POST body with `{"app_id": "abcd", "action": "stop"}` would:
+        - Look for a key named `abcd` in the redis backend.
+        - Take the value from the redis backend and see if the current time is before or after
+        the value that was stored in the redis backend.
+        - If the current time is later than the expiration time, then the respone to this HTTP POST
+        will contain a message saying the job was late.
 
-The application is designed to report if long running jobs have run for too long.
 
-The application takes an HTTP POST and saves the app_id (key) and expiration (datetime value in ctime)
-to a Redis service. The expiration is the sum of the time of the 'start' request and the number of seconds passed
-in the 'duration' field within the request json body. The 'duration' is the maximum time the job (think cron job or
-backup) should run before being considered 'slow' or 'late'.
-
-When an HTTP POST request containing the 'action': 'stop' key/value pair in the json body, the app
-will compare the 'stop' time with the redis content for the app_id to determine if the job was on-time or late.
-
-## Create your images for local testing
+## Create your images for local testing via containers
 
 #### Docker image with python dependencies
 ```bash

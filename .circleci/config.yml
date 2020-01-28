@@ -31,6 +31,8 @@ jobs:
             export PYTHONPATH=$(pwd):$(pwd)/src
             echo "Current PYTHONPATH is:"
             echo $PYTHONPATH
+            echo "Current directory:"
+            ls -alh
       - run:
           name: install dependencies
           command: |

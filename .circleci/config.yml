@@ -27,7 +27,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: setup environment
-          comand: |
+          command: |
             export PYTHONPATH=$(pwd):$(pwd)/src
             echo "Current PYTHONPATH is:"
             echo $PYTHONPATH
